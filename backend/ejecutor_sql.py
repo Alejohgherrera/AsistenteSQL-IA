@@ -15,8 +15,12 @@ def ejecutar_sql(sql):
 
     cursor.execute(sql)
 
+    columnas = [columna[0] for columna in cursor.description]
     filas = cursor.fetchall()
 
     conexion.close()
 
-    return filas
+    return {
+        "columnas": columnas,
+        "filas": filas,
+    }
